@@ -148,9 +148,12 @@ async function main (){
 
 
    let fullStr = titleStr + tocStr + insStr + useStr + techStr + credStr + licStr
-   fs.writeFile('README1.md',fullStr);
-   //return fullStr;
-   //writeFileAsync(‘README.md’, generateHTML(answers))) 
+   fs.writeFile('README1.md',fullStr,err => {
+    if (err) {
+      console.error(err)
+      return
+    }
+   }) 
   }
 
 function askQ(qArray,toc,sections){
