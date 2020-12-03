@@ -1,4 +1,4 @@
-![](../images/readmemaker.jpg)
+![](../images/readmemaker.png)
 
 This application will generate a README.md file that contains the selected standard sections of a markdown file used in application development.
 
