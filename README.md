@@ -1,4 +1,4 @@
-![](./images/readmemaker.png)
+![](./assets/images/readmemaker.png)
 
 This application will generate a README.md file that contains the selected standard sections of a markdown file used in application development.
 
@@ -27,7 +27,7 @@ The user can use this applcation to generate a README.md file containing the sec
 * User selects the sections they want to have in the README.md file
 * User is prompeld for questions and when completed file will be generated in ../output directory. User can edit the file or open in preview of web browser to see the formatted output.
 
-![](./images/readmemaker.gif)
+![](./assets/images/readmemaker.gif)
 
 
 ## Technologies
