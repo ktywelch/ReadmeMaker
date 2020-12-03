@@ -4,7 +4,7 @@ This application will generate a README.md file that contains the selected stand
 
 [Read Me Maker Application Link](In this case there is no url - this is a node based js )
 
-[Read Me Maker application can be found on repository github.com](https://www.github.com/ktywelch/readmemaker)
+[Read Me Maker application can be found on repository github.com](https://github.com/ktywelch/ReadmeMaker)
 ## Table of contents
 * [Title](#Title)
 * [Installation](#Installation)
