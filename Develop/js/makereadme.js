@@ -14,7 +14,7 @@ default: 'My Project'},
 {type: 'input',name: 'titleUrl', message: 'Please Enter the Application url '},
 {type: 'input',name: 'repoName', message: 'Please Enter the Repository name(eg. github) ', default: 'github.com'},
 {type: 'input',name: 'repoUrl', message: 'Please Enter the Repository url'},
-{type: 'input',name: 'titleImg', message: 'If you have an image for the title please add relative path or URL:',default: './images/cal.jpg'}];
+{type: 'input',name: 'titleImg', message: 'If you have an image for the title please add relative path or URL:',default: '../images/ph1.png'}];
 
 const InstallationQ = [{type: 'input',name: 'installation', message: 'Please Enter a description of the installation process ', 
      default: 'The installation pocess is a download of git source, installing required npm modules by using npm install. The package.json file is included in the same directory as the application.'},
@@ -22,14 +22,14 @@ const InstallationQ = [{type: 'input',name: 'installation', message: 'Please Ent
 {type: 'input',name: 'install2', message: 'Second Installation Instruction:'},
 {type: 'input',name: 'install3', message: 'Third Installation Instruction:'},
 {type: 'input',name: 'install4', message: 'Fourth Installation Instruction:'},
-{type: 'input',name: 'installImg', message: 'If you have an image/gif that covers install please add relative path or URL: ', default: './images/installation.jpg'}];
+{type: 'input',name: 'installImg', message: 'If you have an image/gif that covers install please add relative path or URL: ', default: '../images/ph2.png'}];
 
 const UseQ = [{type: 'input',name: 'use', message: 'Please Enter a description of how the user would use this program: '},
 {type: 'input',name: 'use1', message: 'First user instruction (eg. user clicks on main page)'},
 {type: 'input',name: 'use2', message: 'Second user instruction'},
 {type: 'input',name: 'use3', message: 'Third user instruction'},
 {type: 'input',name: 'use4', message: 'Fourth user instruction'},
-{type: 'input',name: 'useImg', message: 'If you have an image/gif that shows the use of app using relative path: ', default: './images/appUse.gif'}];
+{type: 'input',name: 'useImg', message: 'If you have an image/gif that shows the use of app using relative path: ', default: '../images/ph3.png'}];
 
 const TechnologiesQ = [{type: 'input',name: 'technologies', message: 'Please Enter a  brief description of technology used '}, 
 {type: 'input',name: 'tech1', message: 'First technology to list'},
@@ -76,37 +76,24 @@ async function main (){
   })
   .then (qArray => {
     askQ2(qArray[0],qArray[1],qArray[2])})
-  // .then (res => async() => {
-  //        console.log(res);
-  //        createReadme(res)})
-  
-    //inquirer.prompt(questArray).then((answers) => {
-      //console.log(answers);
-     //createReadme(answers,toc,sections); 
-
    .catch(err => {console.log(err)})   
   }     
 
   function createReadme(ans,toc,sections)
   {
   let tocStr,titleStr,insStr,useStr,techStr,credStr,licStr =''  
-  console.log("from CreateReadme",ans,sections);
+  console.log("from CreateReadme",ans);
+    if(toc){tocStr = "\n## Table of contents"}
+
     sections.forEach(element => {
-    //   if(toc){
-    //   if(element != "Table of Contents" || element != "Title" ){
-    //   lce = element.toLowerCase();
-    //   tocStr += `* [${element}](#${lce})`
-    //   }
-    //  }
-  
-  
+     if(toc && (element != "Table of Contents")){
+       tocStr += `\n* [${element}](#${element})`
+     }
      switch (element) {
-      //case 
       case 'Title':
-        titleStr = `![${ans.titleName}]`;
-        if(ans.titleImg.length >5){titleStr += `(${ans.titleImg})`}else{titleStr += ans.titleName.toUpperCase()};
-        titleStr += `\n[${ans.titleName} Application Link](${ans.titleUrl})`;
-        titleStr += `\n[${ans.titleName} Application Repo on ${ans.repoName}](${ans.repoUrl})`;  
+        if(ans.titleImg){titleStr = `![](${ans.titleImg})`}else{titleStr = ans.titleName.toUpperCase()+`\n`};
+        titleStr += `\n\n[${ans.titleName} Application Link](${ans.titleUrl})`;
+        titleStr += `\n\n[${ans.titleName} Application Repo on ${ans.repoName}](${ans.repoUrl})`;  
         break;
       case 'Installation':
         insStr = `\n## Installation\n${ans.installation}\n`;
@@ -117,38 +104,35 @@ async function main (){
         insStr += `![](${ans.insallImg})\n`
         break;
       case 'Use':
-        insStr = `\n## Use\n${ans.use}\n`;
-        insStr += `\n* ${ans.use1}`
-        insStr += `\n* ${ans.use2}`
-        insStr += `\n* ${ans.use3}`
-        insStr += `\n* ${ans.use4}\n`
-        insStr += `![](${ans.useImg})\n`
+        useStr = `\n## Use\n${ans.use}\n`;
+        useStr += `\n* ${ans.use1}`
+        useStr += `\n* ${ans.use2}`
+        useStr += `\n* ${ans.use3}`
+        useStr += `\n* ${ans.use4}\n`
+        useStr += `![](${ans.useImg})\n`
         break;
       case 'Technologies':
-        insStr = `\n## Technologies\n${ans.technologies}\n`;
-        insStr += `\n* ${ans.tech1}`
-        insStr += `\n* ${ans.tech2}`
-        insStr += `\n* ${ans.tech3}`
-        insStr += `\n* ${ans.tech4}\n`
+        techStr = `\n## Technologies\n${ans.technologies}\n`;
+        techStr += `\n* ${ans.tech1}`
+        techStr += `\n* ${ans.tech2}`
+        techStr += `\n* ${ans.tech3}`
+        techStr += `\n* ${ans.tech4}\n`
         break;
       case 'Credits':
-        insStr = `\n## Credits\nRecognizing contributors and sites that helped in development:\n`;
-        insStr += `\n* ${ans.credit1}`
-        insStr += `\n* ${ans.credit2}`
-        insStr += `\n* ${ans.credit3}`
-        insStr += `\n* ${ans.credit4}\n`
+        credStr = `\n## Credits\nRecognizing contributors and sites that helped in development:\n`;
+        credStr += `\n* ${ans.credit1}`
+        credStr += `\n* ${ans.credit2}`
+        credStr += `\n* ${ans.credit3}`
+        credStr += `\n* ${ans.credit4}\n`
         break;
       case 'License':
         licStr = `\n## License`
-        licStr += `${ans.lType}` 
+        licStr += `\n${ans.lType}` 
         break; 
       }
     })
-  
-
-
    let fullStr = titleStr + tocStr + insStr + useStr + techStr + credStr + licStr
-   fs.writeFile('README1.md',fullStr,err => {
+   fs.writeFile('../output/README.md',fullStr,err => {
     if (err) {
       console.error(err)
       return
