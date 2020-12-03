@@ -9,39 +9,39 @@ let  questArray =[];
 let sections = [];
 
 
-const TitleQ = [{type: 'input',name: 'titleName', message: 'The Title, Name and Repo are required\nPlease Enter the Application name ', 
+const TitleQ = [{type: 'input',name: 'titleName', message: 'Please Enter the Application name:\n', 
 default: 'My Project'},
 {type: 'input',name: 'description', message: 'Please Enter the Application Description:\n'},
-{type: 'input',name: 'titleUrl', message: 'Please Enter the Application url: '},
-{type: 'input',name: 'repoName', message: 'Please Enter the Repository name(eg. github): ', default: 'github.com'},
-{type: 'input',name: 'repoUrl', message: 'Please Enter the Repository url: '},
-{type: 'input',name: 'titleImg', message: 'If you have an image for the title please add relative path or URL: ',default: '../images/'}];
+{type: 'input',name: 'titleUrl', message: 'Please Enter the Application url:\n'},
+{type: 'input',name: 'repoName', message: 'Please Enter the Repository name(eg. github):\n', default: 'github.com'},
+{type: 'input',name: 'repoUrl', message: 'Please Enter the Repository url:\n'},
+{type: 'input',name: 'titleImg', message: 'If you have an image for the title please add relative path or URL:\n',default: '../images/'}];
 
-const InstallationQ = [{type: 'input',name: 'installation', message: 'Please Enter a description of the installation process ', 
-     default: 'The installation pocess is a download of git source, installing required npm modules by using npm install. The package.json file is included in the same directory as the application.'},
-{type: 'input',name: 'install1', message: 'First Installation Instruction: '},
-{type: 'input',name: 'install2', message: 'Second Installation Instruction: '},
-{type: 'input',name: 'install3', message: 'Third Installation Instruction: '},
-{type: 'input',name: 'install4', message: 'Fourth Installation Instruction: '},
-{type: 'input',name: 'installImg', message: 'If you have an image/gif that covers install please add relative path or URL: ', default: '../images/'}];
+const InstallationQ = [{type: 'input',name: 'installation', message: 'Enter a description of the installation process, followed by up to four detailed instrcutions:\n', 
+default: 'The installation pocess is a download of git source, using npm install to install required modules based on the package.json file included in the same directory as the application.'},
+{type: 'input',name: 'install1', message: 'Installation Instruction: '},
+{type: 'input',name: 'install2', message: 'Installation Instruction: '},
+{type: 'input',name: 'install3', message: 'Installation Instruction: '},
+{type: 'input',name: 'install4', message: 'Installation Instruction: '},
+{type: 'input',name: 'installImg', message: 'If you have an image/gif that covers install please add relative path or URL:\n', default: '../images/'}];
 
-const UsageQ = [{type: 'input',name: 'use', message: 'Please Enter a description of how the user would use this program: '},
-{type: 'input',name: 'use1', message: 'First user instruction (eg. user logs in)'},
-{type: 'input',name: 'use2', message: 'Second user instruction: '},
-{type: 'input',name: 'use3', message: 'Third user instruction: ' },
-{type: 'input',name: 'use4', message: 'Fourth user instruction: '},
-{type: 'input',name: 'useImg', message: 'If you have an image/gif that shows the use of app using relative path: ', default: '../images/description, installation instructions, usage information, contribution guidelines, and test instructions'}];
+const UsageQ = [{type: 'input',name: 'use', message: 'Please Enter a description of how the user would use this program, followed by up to four detailed instrcutions:\n'},
+{type: 'input',name: 'use1', message: 'User instruction:'},
+{type: 'input',name: 'use2', message: 'User instruction: '},
+{type: 'input',name: 'use3', message: 'User instruction: '},
+{type: 'input',name: 'use4', message: 'User instruction: '},
+{type: 'input',name: 'useImg', message: 'If you have an image/gif that shows the use of app using relative path: ', default: '../images/'}];
 
-const TechnologiesQ = [{type: 'input',name: 'technologies', message: 'Please Enter a  brief description of technology used '}, 
-{type: 'input',name: 'tech1', message: 'First technology to list: '},
-{type: 'input',name: 'tech2', message: 'Second technology to list: '},
-{type: 'input',name: 'tech3', message: 'Third technology to list: '},
-{type: 'input',name: 'tech4', message: 'Fourth technology to list: '}];
+const TechnologiesQ = [{type: 'input',name: 'technologies', message: 'Please Enter a description of development technologies used,followed by up to four mentions:\n'}, 
+{type: 'input',name: 'tech1', message: 'Special tech mention: '},
+{type: 'input',name: 'tech2', message: 'Special tech mention: '},
+{type: 'input',name: 'tech3', message: 'Special tech mention: '},
+{type: 'input',name: 'tech4', message: 'Special tech mention: '}];
 
-const CreditsQ = [{type: 'input',name: 'credit1', message: 'Please Enter list people you would like to credit \n (eg. Sample code  - John Doe on GeeksForGeeks' },
-{type: 'input',name: 'credit2', message: 'Next person to credit: '},
-{type: 'input',name: 'credit3', message: 'Next person to credit: '},
-{type: 'input',name: 'credit4', message: 'Next person to credit: '}];
+const ContributionsQ = [{type: 'input',name: 'credit', message: 'Please enter contributors you would like to acknowledge (max 4) \nContributor/Contribution:'},
+{type: 'input',name: 'credit2', message: 'Contributor/Contribution: '},
+{type: 'input',name: 'credit3', message: 'Contributor/Contribution: '},
+{type: 'input',name: 'credit4', message: 'Contributor/Contribution: '}];
 
 const TestQ = [{type: 'input',name: 'testIns', message: 'Provide instructions to run validation test'}];
 
@@ -49,13 +49,15 @@ const LicenseQ = [{type: 'input',name: 'lType', message: 'Please add License typ
 // End of variable declaration //
 
 async function main (){
-  //inquirer.prompt(questions).then((answers) =>
+  //start with a clear screen
+  console.clear()
+  //start the selection inquirer
   inquirer.prompt([
     {
       name: 'section',
       type: 'checkbox',
-      message: "Please select the sections you want in a README file",  
-      choices: ["Table of Contents","Installation","Use","Technologies","Credits","Test","License"],
+      message: "\nPlease select the sections you want in a README file (Title section is mandatory so not an option):\n",  
+      choices: ["Table of Contents","Installation","Usage","Technologies","Contributions","Test","License"],
     }
   ])
   .then(response => {
@@ -85,10 +87,10 @@ async function main (){
   //Function is the one that will create the file
   function createReadme(ans,toc,sections)
   {
-  let tocStr,titleStr,insStr,useStr,techStr,credStr,licStr,finalStr,testStr = '' 
-  let fullStr =[] 
+  let tocStr=titleStr=insStr=useStr=techStr=credStr=licStr=finalStr=testStr = ''; 
+  let fullStr =["titleStr"] 
 
-  console.log("from CreateReadme",ans);
+  
     if(toc){tocStr = "\n## Table of contents";fullStr.push("tocStr")}
 
     sections.forEach(element => {
@@ -102,8 +104,8 @@ async function main (){
         titleStr += `\n\n[${ans.titleName} Application Link]`;
         if(ans.titleUrl){titleStr += `(${ans.titleUrl})`};
         titleStr += `\n\n[${ans.titleName} application can be found on repository ${ans.repoName}]`;
-        if(ans.repoUrl){titleStr += `(${ans.repoUrl})`};  
-        fullStr.push("titleStr")
+        if(ans.repoUrl){titleStr += `(${ans.repoUrl})`}; 
+
         break;
       case 'Installation':
         insStr = `\n## Installation\n${ans.installation}\n`;
@@ -114,8 +116,8 @@ async function main (){
         if(ans.installImg){insStr += `![](${ans.installImg})\n`};
         fullStr.push("insStr")
         break;
-      case 'Use':
-        useStr = `\n\n## Use\n${ans.use}\n`;
+      case 'Usage':
+        useStr = `\n\n## Useage\n${ans.use}\n`;
         if(ans.use1){useStr += `\n* ${ans.use1}`};
         if(ans.use2){useStr += `\n* ${ans.use2}`};
         if(ans.use3){useStr += `\n* ${ans.use3}`};
@@ -131,8 +133,8 @@ async function main (){
         if(ans.tech4){techStr += `\n* ${ans.tech4}\n`};
         fullStr.push("techStr")
         break;
-      case 'Credits':
-        credStr = `\n## Credits\nRecognizing contributors and sites that helped in development:\n`;
+      case 'Contributions':
+        credStr = `\n## Contributions\nRecognizing contributors and sites that helped in development:\n`;
         if(ans.credit1){credStr += `\n* ${ans.credit1}`};
         if(ans.credit2){credStr += `\n* ${ans.credit2}`};
         if(ans.credit3){credStr += `\n* ${ans.credit3}`};
@@ -151,9 +153,11 @@ async function main (){
         break; 
       }
     })
+   //used array because only wanted to string together the  sections that were selected
    fullStr.forEach(element => {
-     finalStr += eval(element);
+    finalStr += eval(element);
    });
+  
 
    fs.writeFile('../output/README.md',finalStr,err => {
     if (err) {
@@ -161,7 +165,7 @@ async function main (){
       return
     }
     console.clear();
-    console.log ("Your README.md file can be found at ../output/README.md");
+    console.log ("The generated README.md file can be found at ../output/README.md\nPlease open with any standard text editor to make changes.");
    }) 
   }
 
